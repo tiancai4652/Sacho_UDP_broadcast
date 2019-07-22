@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace BroadcastLibrary
 {
-    public class BroadcastListener
+    public class BroadcastListener:IDisposable
     {
         /// <summary>
         /// 消息分隔符
@@ -81,6 +81,20 @@ namespace BroadcastLibrary
             });
             listenerThread.IsBackground = true;
             listenerThread.Start();
+        }
+
+        public void Dispose()
+        {
+            try
+            {
+                listenerThread.Abort();
+            }
+            catch { }
+
+            if (udpListening != null)
+            {
+                udpListening.Close();
+            }
         }
     }
 }
