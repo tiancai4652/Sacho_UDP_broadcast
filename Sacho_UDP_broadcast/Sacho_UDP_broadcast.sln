@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Send", "Send\Send.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receive", "Receive\Receive.csproj", "{938A751D-3CCD-44CF-973A-23DE3B997EB2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version2", "Version2", "{702BEF0B-B9CA-4BED-92D8-6DE5B03F259B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version1", "Version1", "{0947BC9E-945D-48E0-924E-DBD123ABED65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC6E2B09-75A1-42DD-954A-1AA2B4305910} = {0947BC9E-945D-48E0-924E-DBD123ABED65}
+		{2FE96122-87D2-4194-8E27-6282DDB03B59} = {702BEF0B-B9CA-4BED-92D8-6DE5B03F259B}
+		{4C87AEDE-58D3-4A36-9DCC-57787F76D3D7} = {702BEF0B-B9CA-4BED-92D8-6DE5B03F259B}
+		{938A751D-3CCD-44CF-973A-23DE3B997EB2} = {702BEF0B-B9CA-4BED-92D8-6DE5B03F259B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C92429F0-367D-4F7C-BA76-0314743CBF0D}

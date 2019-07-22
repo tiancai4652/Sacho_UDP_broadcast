@@ -35,16 +35,7 @@ namespace BroadcastLibrary
             BroadcastPort = sendPort;
             BroadcastAddress = broadcastAddress;
             IPAddress ip = IPAddress.None;
-            if (IPAddressQuery.GetLocalIP(out ip))
-            {
-                IPEndPoint iep = new IPEndPoint(ip, BroadcastPort);
-                udpSender = new UdpClient(iep);
-            }
-            else
-            {
-                IPEndPoint iep = new IPEndPoint(BroadcastAddress, BroadcastPort);
-                udpSender = new UdpClient(iep);
-            }
+            udpSender = new UdpClient(AddressFamily.InterNetwork);
         }
 
         /// <summary>
@@ -56,15 +47,13 @@ namespace BroadcastLibrary
             if (sendThread != null && sendThread.IsAlive)
                 return;
 
-            sendThread = new Thread(() => {
+            sendThread = new Thread(() => 
+            {
                 byte[] send = System.Text.Encoding.UTF8.GetBytes(content);
-                udpSender.Send(send, send.Length, new IPEndPoint(BroadcastAddress, BroadcastPort));
+               int x= udpSender.Send(send, send.Length, new IPEndPoint(BroadcastAddress, BroadcastPort));
             });
             sendThread.IsBackground = true;
             sendThread.Start();
         }
-
-
-
     }
 }

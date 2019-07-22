@@ -13,7 +13,7 @@ namespace BroadcastLibrary
         /// <summary>
         /// 监听端口
         /// </summary>
-        int listeningPort { get; set; }
+        public int listeningPort { get; set; }
 
         /// <summary>
         /// 监听线程
@@ -52,14 +52,20 @@ namespace BroadcastLibrary
             listenerThread = new Thread(() => {
 
                 byte[] data;
-                IPEndPoint iep=new IPEndPoint(IPAddress.Any, this.listeningPort);
+                IPEndPoint iep = new IPEndPoint(IPAddress.Any, this.listeningPort);
                 while (true)
                 {
                     try
                     {
                         data = udpListening.Receive(ref iep);
-                        string analyzeResult = AnalyzeFunc(data);
-                        CallBackFunc(analyzeResult);
+                        if (AnalyzeFunc != null)
+                        {
+                            string analyzeResult = AnalyzeFunc(data);
+                            if (CallBackFunc != null)
+                            {
+                                CallBackFunc(analyzeResult);
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {

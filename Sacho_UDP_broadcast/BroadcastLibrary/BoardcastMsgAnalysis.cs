@@ -35,7 +35,7 @@ namespace BroadcastLibrary
 
             Func<string, string> handler = msgHandlers[msgType];
             string replay = handler(values.Length > 1 ? values[1] : string.Empty);
-            return $"{values[0]}:{replay}";
+            return $"{values[0]}{ Global.MsgSplitter}{replay}";
         }
 
         #region 消息处理器
