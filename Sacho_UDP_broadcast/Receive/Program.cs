@@ -10,7 +10,8 @@ namespace Receive
     {
         static void Main(string[] args)
         {
-            BroadcastListener listener = new BroadcastListener(8409, BoardcastMsgAnalysis.GetReply,null);
+            BroadcastListener listener = new BroadcastListener(8409, Global.MsgSplitter, BoardcastMsgAnalysis.GetReply,
+                new Func<string, string>(t=> { Console.WriteLine(t);return string.Empty; }));
             listener.StartListening();
 
             Console.ReadKey();

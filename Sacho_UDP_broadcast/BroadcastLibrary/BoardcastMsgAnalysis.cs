@@ -25,17 +25,17 @@ namespace BroadcastLibrary
         /// </summary>
         /// <param name="buffer">接收的消息</param>
         /// <returns></returns>
-        public static string GetReply(byte[] data)
+        public static string GetReply(byte[] data,string MsgSplitter)
         {
             string msg = System.Text.Encoding.UTF8.GetString(data);
-            string[] values = msg.Split(new[] { Global.MsgSplitter }, StringSplitOptions.None);
+            string[] values = msg.Split(new[] { MsgSplitter }, StringSplitOptions.None);
             string msgType = values[0];
             if (!msgHandlers.ContainsKey(msgType))
                 return string.Empty;
 
             Func<string, string> handler = msgHandlers[msgType];
             string replay = handler(values.Length > 1 ? values[1] : string.Empty);
-            return $"{values[0]}{ Global.MsgSplitter}{replay}";
+            return $"{values[0]}{MsgSplitter}{replay}";
         }
 
         #region 消息处理器
